@@ -1,0 +1,597 @@
+--------------------------------
+StructureDemo
+--------------------------------
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>1View Portal</title>
+        <script src="../components/lib/angular/angular.js"></script>
+    </head>
+    <body ng-app="wex1View">
+        <div>
+            {{'The sum of one and two is ' + (1 + 2)}}
+        </div>
+    </body>
+</html>
+
+var wex1ViewApp = angular.module("wex1View", []);
+
+-------------------------------------
+ControllersDemo
+-------------------------------------
+
+wex1ViewApp.controller("ExpensesSearchCtrl", [
+    "$scope", function($scope) {
+        alert('message');
+    }
+]);
+
+var app = angular.module("1View", ['1ViewControllers', '1ViewControllers']);
+
+var controllers = angular.module("1ViewControllers", []);
+angular.module("1ViewDirectives", []);
+
+controllers.controller("ThingCtrl", [function($scope) {
+    
+}]);
+-------------------------------------
+DatabindingDemo
+-----------------------------------
+
+$scope.model = {};
+        $scope.model.expenses = [
+             {
+                 id: 1,
+                 category: "Pharmacy",
+                 description: "Pain reliever",
+                 date: "2011-01-18T18:25:43.511Z",
+                 amount: "10.20"
+             },
+            {
+                id: 2,
+                category: "Pharmacy",
+                description: "Bandages",
+                date: "2012-02-19T18:25:43.511Z",
+                amount: "5.3"
+            },
+            {
+                id: 3,
+                category: "Dental",
+                description: "Cleaning",
+                date: "2013-03-23T18:25:43.511Z",
+                amount: "150"
+            },
+            {
+                id: 4,
+                category: "Pharmacy",
+                description: "Cold medicine",
+                date: "2012-04-23T18:25:43.511Z",
+                amount: "13.65"
+            },
+            {
+                id: 5,
+                category: "Chiropractic",
+                description: "Adjustment",
+                date: "2014-08-21T18:25:43.511Z",
+                amount: "110.85"
+            },
+            {
+                id: 6,
+                category: "Dental",
+                description: "Filling",
+                date: "2014-10-23T18:25:43.511Z",
+                amount: "85.25"
+            }
+        ];
+
+	<body ng-app="wex1View">
+		<h1> 1View Dashboard</h1>
+        <div class="dashboard" ng-controller="ExpensesSearchCtrl">
+            <div class="expenses" ng-repeat="expense in model.expenses">
+                <div class="expense">
+                    <div>{{expense.category}}</div>
+                    <div>{{expense.date}}</div>
+                    <div>{{expense.description}}</div>
+                    <div class="amount">{{expense.amount}}</div>
+                </div>
+            </div>
+        </div>
+    </body> 
+	
+-------------------------------------
+RoutingDemo
+-------------------------------------
+
+var wex1ViewApp = angular.module("wex1View", ["ngRoute"]);
+
+wex1ViewApp.config([
+    "$routeProvider", "$locationProvider",
+    function ($routeProvider) {
+        $routeProvider.
+            when("/expenses", {
+                templateUrl: "partials/expenses.html",
+                controller: "ExpensesSearchCtrl"
+            }).
+            when("/expenses/:expenseId", {
+                templateUrl: "partials/expense-detail.html",
+                controller: "ExpenseDetailCtrl"
+            }).
+            otherwise({
+                redirectTo: "/expenses"
+            });
+    }
+]);
+
+wex1ViewApp.controller("ExpensesSearchCtrl", [
+    "$scope", function ($scope) {
+        $scope.model = {};
+        $scope.model.expenses = expensedata;
+    }
+]);
+
+wex1ViewApp.controller("ExpenseDetailCtrl", [
+    "$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+        $scope.model = {};
+        $scope.model.expense = $.grep(expensedata, function (e) { return e.id == $routeParams.expenseId; })[0];
+        $scope.model.backtext = "Back To List";
+    }
+]);
+
+var expensedata = [
+             {
+                 id: 1,
+                 category: "Pharmacy",
+                 description: "Pain reliever",
+                 date: "2011-01-18T18:25:43.511Z",
+                 amount: "10.20"
+             },
+            {
+                id: 2,
+                category: "Pharmacy",
+                description: "Bandages",
+                date: "2012-02-19T18:25:43.511Z",
+                amount: "5.3"
+            },
+            {
+                id: 3,
+                category: "Dental",
+                description: "Cleaning",
+                date: "2013-03-23T18:25:43.511Z",
+                amount: "150"
+            },
+            {
+                id: 4,
+                category: "Pharmacy",
+                description: "Cold medicine",
+                date: "2012-04-23T18:25:43.511Z",
+                amount: "13.65"
+            },
+            {
+                id: 5,
+                category: "Chiropractic",
+                description: "Adjustment",
+                date: "2014-08-21T18:25:43.511Z",
+                amount: "110.85"
+            },
+            {
+                id: 6,
+                category: "Dental",
+                description: "Filling",
+                date: "2014-10-23T18:25:43.511Z",
+                amount: "85.25"
+            }
+];
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>1View Portal</title>
+        <link href="../components/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/app.css">
+        <script src="../components/lib/jquery/dist/jquery.js"></script>
+        <script src="../components/lib/angular/angular.js"></script>
+        <script src="../components/lib/angular-route/angular-route.js"></script>
+        <script src="../components/lib/angular-resource/angular-resource.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="wex1View">
+        <h1> 1View Dashboard</h1>
+        <div class="dashboard" ng-controller="ExpensesSearchCtrl">
+            <div ng-view></div>
+        </div>
+    </body>
+    <script type="text/ng-template" id="partials/expenses.html">
+        <div class="expenses" ng-repeat="expense in model.expenses">
+            <div class="expense">
+                <div class="category">{{expense.category}}</div>
+                <div><a href="#/expenses/{{expense.id}}">{{expense.description}}</a></div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="partials/expense-detail.html">
+        <div class="expenses">
+            <div class="expense">
+                <div>{{model.expense.category}}</div>
+                <div>{{model.expense.date}}</div>
+                <div>{{model.expense.description}}</div>
+                <div class="amount">{{model.expense.amount}}</div>
+            </div>
+            <a href="#/expenses">{{model.backtext}}</a>
+        </div>
+    </script>
+</html>
+
+-------------------------------------------
+ServicesDemo
+-------------------------------------------
+
+(function() {
+    "use strict";
+
+    var wex1ViewApp = angular.module("wex1View", [
+        "ngRoute"
+    ]);
+
+    wex1ViewApp.config([
+        "$routeProvider", "$locationProvider",
+        function($routeProvider, $locationProvider) {
+            $routeProvider.
+                when("/expenses", {
+                    templateUrl: "partials/expenses.html",
+                    controller: "ExpensesSearchCtrl"
+                }).
+                when("/expenses/:expenseId", {
+                    templateUrl: "partials/expense-detail.html",
+                    controller: "ExpenseDetailCtrl"
+                }).
+                otherwise({
+                    redirectTo: "/expenses"
+                });
+        }
+    ]);
+
+    wex1ViewApp.controller("ExpensesSearchCtrl", [
+        "$scope", "$http", function($scope, $http) {
+            $scope.model = {};
+            $http.get('/expenses').success(function(returnval) {
+                $scope.model.expenses = returnval;
+            });
+        }
+    ]);
+
+    wex1ViewApp.controller("ExpenseDetailCtrl", [
+        "$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+            $scope.model = {};
+            $http.get('/expenses').success(function(returnval) {
+                $scope.model.expense = $.grep(returnval, function(e) { return e.id == $routeParams.expenseId; })[0];
+            });
+            $scope.model.backtext = "Back To List";
+        }
+    ]);
+}());
+
+-------------------------------------------
+DirectivesDemo
+-------------------------------------------
+
+res.send([
+        {
+            id: 1,
+            category: 'Pharmacy',
+            description: 'Pain reliever',
+            date: '2012-01-20T18:25:43.511Z',
+            amount: '10.20',
+            provider: {
+                name: "CVS",
+                address: "1048 Farmington Ave, West Hartford, CT 06107"
+            }
+        },
+        {
+            id: 2,
+            category: 'Pharmacy',
+            description: 'Bandages',
+            date: '2012-02-18T18:25:43.511Z',
+            amount: '5.3',
+            provider: {
+                name: "CVS",
+                address: "1048 Farmington Ave, West Hartford, CT 06107"
+            }
+        },
+        {
+            id: 3,
+            category: 'Dental',
+            description: 'Cleaning',
+            date: '2012-03-23T18:25:43.511Z',
+            amount: '150',
+            provider: {
+                name: "Dentonics",
+                address: "82 Hopmeadow, Simsbury CT"
+            }
+        },
+        {
+            id: 4,
+            category: 'Pharmacy',
+            description: 'Cold medicine',
+            date: '2012-04-23T18:25:43.511Z',
+            amount: '13.65',
+            provider: {
+                name: "CVS",
+                address: "1048 Farmington Ave, West Hartford, CT 06107"
+            }
+        },
+        {
+            id: 5,
+            category: 'Chiropractic',
+            description: 'Adjustment',
+            date: '2012-08-23T18:25:43.511Z',
+            amount: '110.85',
+            provider: {
+                name: "Corsello Clinic Of Chiropractic",
+                address: "2021 Main Street Stratford, CT 06615"
+            }
+        },
+        {
+            id: 6,
+            category: 'Dental',
+            description: 'Filling',
+            date: '2012-10-23T18:25:43.511Z',
+            amount: '85.25',
+            provider: {
+                name: "Wex Dental",
+                address: "97 Darling Ave South Portland, ME 04106"
+            }
+        },
+        {
+            id: 7,
+            category: 'Medical',
+            description: 'Mummification',
+            date: '2044-10-23T18:25:43.511Z',
+            amount: '3485.25',
+            provider: {
+                name: "Summum",
+                address: "707 Genesee Avenue Salt Lake City, Utah 84104"
+            }
+        }
+    ]);
+	
+	icon.html
+	<i><span class="glyphicon glyphicon-{{icon}}"></span></i>
+
+	google-map.html
+	<div class="google-address" ng-init="showGoogleMap=false" >
+    <a href="javascript:void(0)" ng-click="showGoogleMap=!showGoogleMap">
+      <wex-icon icon="'map-marker'"></wex-icon>
+    </a>
+    <a  ng-if="showGoogleMap" href="http://www.google.com/maps?q={{address}}&t=h" target="_blank">
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{address}}&zoom=10&size=500x240&maptype=hybrid&markers=color:red%7C{{address}}" style="max-width:100%"  alt="Google Map, click to see detailed map" />
+    </a>
+</div>
+
+    wex1ViewApp.directive('ev1Highlighter', function() {
+        return {
+            link: function($scope, element, attrs) {
+                element.bind('click', function() {
+                    element.html('You clicked me!');
+                });
+                element.bind('mouseenter', function() {
+                    element.css('background-color', 'yellow');
+                });
+                element.bind('mouseleave', function() {
+                    element.css('background-color', 'white');
+                });
+            }
+        };
+    });
+
+    wex1ViewApp.directive("wexIcon", [
+        function() {
+            return {
+                restrict: 'E',
+                replace: true,
+                scope: {
+                    "icon": "="
+                },
+                templateUrl: 'directive-templates/icon.html'
+            };
+        }
+    ]);
+
+    wex1ViewApp.directive("wexMap", [
+        function() {
+            return {
+                restrict: 'E',
+                replace: true,
+                scope: {
+                    "address": "="
+                },
+                templateUrl: 'directive-templates/google-map.html'
+            };
+        }
+    ]);
+	
+	
+    <div class="expenses">
+        <div class="expense">
+            <div>{{model.expense.category}}</div>
+            <div class="provider">
+                <wex-map address="expense.provider.address"></wex-map>
+                <span class="name">
+                    {{model.expense.provider.name}}
+                </span> -
+                <span class="address">{{model.expense.provider.address}}</span>
+            </div>
+            <div>{{model.expense.date}}</div>
+            <div>{{model.expense.description}}</div>
+            <div class="amount">{{model.expense.amount}}</div>
+        </div>
+        <a href="#/expenses" ev1-highlighter>{{model.backtext}}</a>
+    </div>
+
+-------------------------------------------
+FiltersDemo
+-------------------------------------------
+    <div class="expenses">
+        <div class="expense">
+            <div>{{model.expense.category}}</div>
+            <div class="provider">
+                <wex-map address="expense.provider.address"></wex-map>
+                <span class="name">
+                    {{model.expense.provider.name}}
+                </span> -
+                <span class="address">{{model.expense.provider.address}}</span>
+            </div>
+            <div>{{model.expense.date | date : 'mediumDate'}}</div>
+            <div>{{model.expense.description}}</div>
+            <div class="amount">{{model.expense.amount | currency}}</div>
+        </div>
+        <a href="#/expenses" ev1-highlighter>{{model.backtext}}</a>
+    </div>
+	
+<div class="toolbar">
+    <label for="searchText">Search:</label>
+    <input name="searchText" type="text" ng-model="searchText" value="" />
+</div>
+<div class="expenses" ng-repeat="expense in model.expenses | filter:searchText">
+    <div class="expense">
+        <div class="category">{{expense.category}}</div>
+        <div><a href="#/expenses/{{expense.id}}">{{expense.description}}</a></div>
+    </div>
+</div>
+
+-------------------------------------------
+InterceptorsDemo
+-------------------------------------------
+exports.search = function (req, res) {
+    setTimeout(function() {
+        res.send([
+            {
+                id: 1,
+                category: 'Pharmacy',
+                description: 'Pain reliever',
+                date: '2012-01-20T18:25:43.511Z',
+                amount: '10.20',
+                provider: {
+                    name: "CVS",
+                    address: "1048 Farmington Ave, West Hartford, CT 06107"
+                }
+            },
+            {
+                id: 2,
+                category: 'Pharmacy',
+                description: 'Bandages',
+                date: '2012-02-18T18:25:43.511Z',
+                amount: '5.3',
+                provider: {
+                    name: "CVS",
+                    address: "1048 Farmington Ave, West Hartford, CT 06107"
+                }
+            },
+            {
+                id: 3,
+                category: 'Dental',
+                description: 'Cleaning',
+                date: '2012-03-23T18:25:43.511Z',
+                amount: '150',
+                provider: {
+                    name: "Dentonics",
+                    address: "82 Hopmeadow, Simsbury CT"
+                }
+            },
+            {
+                id: 4,
+                category: 'Pharmacy',
+                description: 'Cold medicine',
+                date: '2012-04-23T18:25:43.511Z',
+                amount: '13.65',
+                provider: {
+                    name: "CVS",
+                    address: "1048 Farmington Ave, West Hartford, CT 06107"
+                }
+            },
+            {
+                id: 5,
+                category: 'Chiropractic',
+                description: 'Adjustment',
+                date: '2012-08-23T18:25:43.511Z',
+                amount: '110.85',
+                provider: {
+                    name: "Corsello Clinic Of Chiropractic",
+                    address: "2021 Main Street Stratford, CT 06615"
+                }
+            },
+            {
+                id: 6,
+                category: 'Dental',
+                description: 'Filling',
+                date: '2012-10-23T18:25:43.511Z',
+                amount: '85.25',
+                provider: {
+                    name: "Wex Dental",
+                    address: "97 Darling Ave South Portland, ME 04106"
+                }
+            },
+            {
+                id: 7,
+                category: 'Medical',
+                description: 'Mummification',
+                date: '2044-10-23T18:25:43.511Z',
+                amount: '3485.25',
+                provider: {
+                    name: "Summum",
+                    address: "707 Genesee Avenue Salt Lake City, Utah 84104"
+                }
+            }
+        ]);
+    }, 2000);
+};
+
+wex1ViewApp.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push(function($q, $injector) {
+            var isLoadingScreenShowing = false;
+            var $http;
+            return {
+                'request': function(request) {
+                    if (!isLoadingScreenShowing) {
+                        isLoadingScreenShowing = true;
+                        $('#loadingDiv').fadeIn(300);
+                        $('#contentDiv').fadeOut(300);
+                    }
+                    return request;
+                },
+                'requestError': function(rejection) {
+                    $http = $http || $injector.get('$http');
+                    if ($http.pendingRequests.length < 1 && isLoadingScreenShowing) {
+                        $('#loadingDiv').fadeOut(300);
+                        $('#contentDiv').fadeIn(300);
+                        isLoadingScreenShowing = false;
+                    }
+                    return $q.reject(rejection);
+                },
+                'response': function(response) {
+                    $http = $http || $injector.get('$http');
+                    if ($http.pendingRequests.length < 1 && isLoadingScreenShowing) {
+                        $('#loadingDiv').fadeOut(300);
+                        $('#contentDiv').fadeIn(300);
+                        isLoadingScreenShowing = false;
+                    }
+                    return response;
+                },
+                'responseError': function(rejection) {
+                    $http = $http || $injector.get('$http');
+                    if ($http.pendingRequests.length < 1 && isLoadingScreenShowing) {
+                        $('#loadingDiv').fadeOut(300);
+                        $('#contentDiv').fadeIn(300);
+                        isLoadingScreenShowing = false;
+                    }
+                    return $q.reject(rejection);
+                }
+            }
+        });
+    }]);
+
+-------------------------------------------
+TestingDemo
+-------------------------------------------

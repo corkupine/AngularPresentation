@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>1View Portal</title>
+        <link href="../components/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/app.css">
+        <script src="../components/lib/angular/angular.js"></script>
+        <script src="../components/lib/angular-resource/angular-resource.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="wex1View">
+        <h1> 1View Dashboard</h1>
+        <div class="dashboard" ng-controller="ExpensesSearchCtrl">
+            <div class="expenses" ng-repeat="expense in model.expenses">
+                <div class="expense">
+                    <div>{{expense.category}}</div>
+                    <div>{{expense.date}}</div>
+                    <div>{{expense.description}}</div>
+                    <div class="amount">{{expense.amount}}</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

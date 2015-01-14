@@ -1,0 +1,29 @@
+<div >
+  <div class="toolbar">
+
+      <label for="searchText">Search:</label>
+      <input name="searchText" type="text" ng-model="searchText" />
+  </div>
+  ﻿<div class="expenses" >
+    <div ng-if="expenseComplexFilter.provider.state">
+      Expense(s) in State : <em>{{expenseComplexFilter.provider.state}}</em>
+    </div>
+      <div class="expense" ng-repeat="expense in expenses | filter:searchText | filter:expenseComplexFilter">
+          <div class="category"><wex-highlight highlight-term="searchText" text="expense.category"></wex-highlight></div>
+          <div class="provider">
+              <wex-map address="expense.provider.address"></wex-map>
+              <span class="name">
+                <wex-highlight highlight-term="searchText" text="expense.provider.name"></wex-highlight>
+              </span> -
+              <span class="address"><wex-highlight highlight-term="searchText" text="expense.provider.address"></wex-highlight></span>
+          </div>
+          <div class="date"><wex-highlight highlight-term="searchText" text="expense.date | date"></wex-highlight></div>
+          <div class="description"><wex-highlight highlight-term="searchText" text="expense.description"></wex-highlight></div>
+          <div class="amount"><wex-highlight highlight-term="searchText" text="expense.amount | currency"></wex-highlight></div>
+
+      </div>
+  </div>
+  <h4 >Summary</h4>
+  <wex-heat-map><div class="map"></div></wex-heat-map>
+  <button style="position:fixed;bottom:10px;" ng-click="searchText='';expenseComplexFilter={};">Remove Filters</button>
+</div>

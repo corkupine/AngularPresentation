@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E4304227-4844-4F49-99D6-B52D014B5C15}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{89FCE59A-AACB-49B3-AF06-0603F3480918}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{75AB130B-292A-4355-ACCB-65DAB1AD1E67}"
+	ProjectSection(SolutionItems) = preProject
+		ui\app\index.html = ui\app\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{C86B5257-347C-4A13-B4EF-1E5F95DAF427}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{08652540-5239-4E1E-BC40-61FEE2F206F5}"
+	ProjectSection(SolutionItems) = preProject
+		ui\app\css\app.css = ui\app\css\app.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{10791411-CDE0-40B3-B5E8-EC2ACC4E9CA2}"
+	ProjectSection(SolutionItems) = preProject
+		ui\app\js\app.js = ui\app\js\app.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{2DDAB24A-9FD3-4F13-9D5A-AF729C614B39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "angular", "angular", "{E3B9E947-4365-47A7-931E-40983FF4BBD3}"
+	ProjectSection(SolutionItems) = preProject
+		ui\components\lib\angular\.bower.json = ui\components\lib\angular\.bower.json
+		ui\components\lib\angular\angular.js = ui\components\lib\angular\angular.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "angular-resource", "angular-resource", "{D5A4B6CD-5FF7-434B-9B7C-463A3BC36923}"
+	ProjectSection(SolutionItems) = preProject
+		ui\components\lib\angular-resource\angular-resource.js = ui\components\lib\angular-resource\angular-resource.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "angular-route", "angular-route", "{4766E1F1-53F2-485B-82D8-4950C695759A}"
+	ProjectSection(SolutionItems) = preProject
+		ui\components\lib\angular-route\angular-route.js = ui\components\lib\angular-route\angular-route.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bootstrap", "bootstrap", "{FCD6872E-AEA8-4FFA-A504-035FF20D59D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "jquery", "jquery", "{9676CDCE-A5E2-4F52-A883-937EA3885664}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{2D685F1C-CEDD-4E53-AA62-4FE8472E9E9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{DC9BD595-618B-4D5A-9B5D-8E3E4C849D15}"
+	ProjectSection(SolutionItems) = preProject
+		ui\components\lib\bootstrap\dist\css\bootstrap.css = ui\components\lib\bootstrap\dist\css\bootstrap.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{D8A6A41A-1ECA-4E99-A084-F9408B5FBC44}"
+	ProjectSection(SolutionItems) = preProject
+		ui\components\lib\jquery\dist\jquery.js = ui\components\lib\jquery\dist\jquery.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75AB130B-292A-4355-ACCB-65DAB1AD1E67} = {89FCE59A-AACB-49B3-AF06-0603F3480918}
+		{C86B5257-347C-4A13-B4EF-1E5F95DAF427} = {89FCE59A-AACB-49B3-AF06-0603F3480918}
+		{08652540-5239-4E1E-BC40-61FEE2F206F5} = {75AB130B-292A-4355-ACCB-65DAB1AD1E67}
+		{10791411-CDE0-40B3-B5E8-EC2ACC4E9CA2} = {75AB130B-292A-4355-ACCB-65DAB1AD1E67}
+		{2DDAB24A-9FD3-4F13-9D5A-AF729C614B39} = {C86B5257-347C-4A13-B4EF-1E5F95DAF427}
+		{E3B9E947-4365-47A7-931E-40983FF4BBD3} = {2DDAB24A-9FD3-4F13-9D5A-AF729C614B39}
+		{D5A4B6CD-5FF7-434B-9B7C-463A3BC36923} = {2DDAB24A-9FD3-4F13-9D5A-AF729C614B39}
+		{4766E1F1-53F2-485B-82D8-4950C695759A} = {2DDAB24A-9FD3-4F13-9D5A-AF729C614B39}
+		{FCD6872E-AEA8-4FFA-A504-035FF20D59D5} = {2DDAB24A-9FD3-4F13-9D5A-AF729C614B39}
+		{9676CDCE-A5E2-4F52-A883-937EA3885664} = {2DDAB24A-9FD3-4F13-9D5A-AF729C614B39}
+		{2D685F1C-CEDD-4E53-AA62-4FE8472E9E9B} = {FCD6872E-AEA8-4FFA-A504-035FF20D59D5}
+		{DC9BD595-618B-4D5A-9B5D-8E3E4C849D15} = {2D685F1C-CEDD-4E53-AA62-4FE8472E9E9B}
+		{D8A6A41A-1ECA-4E99-A084-F9408B5FBC44} = {9676CDCE-A5E2-4F52-A883-937EA3885664}
+	EndGlobalSection
+EndGlobal

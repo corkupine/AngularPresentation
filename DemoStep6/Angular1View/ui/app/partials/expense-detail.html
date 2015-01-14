@@ -1,0 +1,17 @@
+﻿
+    <div class="expenses">
+        <div class="expense">
+            <div>{{model.expense.category}}</div>
+            <div class="provider">
+                <wex-map address="model.expense.provider.address"></wex-map>
+                <span class="name">
+                    {{model.expense.provider.name}}
+                </span> -
+                <span class="address">{{model.expense.provider.address}}</span>
+            </div>
+            <div>{{model.expense.date}}</div>
+            <div>{{model.expense.description}}</div>
+            <div class="amount">{{model.expense.amount}}</div>
+        </div>
+        <a href="#/expenses" ev1-highlighter>{{model.backtext}}</a>
+    </div>

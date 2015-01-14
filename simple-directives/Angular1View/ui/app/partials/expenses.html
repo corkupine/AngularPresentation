@@ -1,0 +1,16 @@
+﻿<div class="expenses" >
+    <div class="expense" ng-repeat="expense in expenses | filter:searchText">
+        <div class="category">{{expense.category}}</div>
+        <div class="provider">
+            <wex-map address="expense.provider.address"></wex-map>
+            <span class="name">
+              {{expense.provider.name}}
+            </span> -
+            <span class="address">{{expense.provider.address}}</span>
+        </div>
+        <div class="date">{{expense.date | date}}</div>
+        <div class="description">{{expense.description}}</div>
+        <div class="amount">{{expense.amount | currency}}</div>
+
+    </div>
+</div>

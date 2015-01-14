@@ -1,0 +1,6 @@
+﻿<div class="expenses" ng-repeat="expense in model.expenses">
+    <div class="expense">
+        <div class="category">{{expense.category}}</div>
+        <div><a href="#/expenses/{{expense.id}}">{{expense.description}}</a></div>
+    </div>
+</div>
