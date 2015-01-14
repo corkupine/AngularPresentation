@@ -1,0 +1,401 @@
+﻿<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>AngularJS</title>
+
+		<meta name="description" content="A client-side MV* framework">
+		<meta name="author" content="Syed Ahmed, Ephraim Mower">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>AngularJS</h1>
+					<h3>Agenda</h3>
+					<ul>
+						<li>About</li>
+						<li>Setting up</li>
+						<li>Main elements/demos</li>
+						<li>1Cloud pilot project</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>About Angular</h2>
+						<ul>
+						<li>MV* (Model View Whatever)</li>
+						<small>
+						A nice way to organize code by single responsibility, and decouple DOM, logic and data.
+						</small>
+						<li>Expands HTML</li>
+						<small>
+						Allows us to be declarative, and avoid a lot of procedural javascript. DOM manipulation is segregated.
+						<code>&lt;evo1-textbox placeholder="enter name here"/&gt;</code><br/>
+						<code>&lt;div evo1-mouseovereffect&gt;&lt;/div&gt;</code>
+						</small>
+						<li>Provides structure for properly factored code</li>
+						<small>
+						Services, controllers, directives, filters, factories, etc. allow for beautiful composition.
+						</small>
+						<li>From Google</li>
+						<small>
+						Created in 2009 at a startup, open-sourced, and adopted by Google where startup partner was employed.
+						</small>
+						</ul>
+				</section>
+			
+				<section>
+					<h2>How Angular Works</h2>
+					<ul>
+						<li>DI-Driven and Testable</li>
+						<small>Angular encourages separation into different composable parts, which can be injected as dependencies into each other. These parts can be easily tested or mocked.</small>
+						<li>Scope</li>
+						<small>Scope wraps a hierarchical layer of the DOM, and is inherited by child scopes. This is a reflection of the prototypal inheritance of javascript. There will probably be many different scopes in play in an application.</small>
+						<li>Dirty-checking vs. change listening</li>
+						<small>Scope variables are registered to be watched. The Angular "digest cycle" runs through all these variables looking to see what changed. By default, data-bound variables are watched. Change listening is a common approach in other libraries, observable objects register listeners.</small>
+						<li>Can use POJOs vs. "observables"</li>
+						<small>For other libraries, you must inherit from an observable to be able to bind data. Using POJOs means less code which is less complex.</small>
+						<li>Framework vs. Library</li>
+						<small>Many popular libraries are not really frameworks in the true sense. Knockout does databinding and jQuery does DOM manipulation, but neither offer a philosophy for building an application. Angular encourages a specific architectural approach and style.</small>
+					</ul>
+				</section>
+			
+				<section>
+					<h2>A Different Paradigm</h2>
+					<ul>
+						<li>SPA</li>
+						<small>Angular apps are often a "single page application", with HTML fragments and server-side data retrieved and displayed just-in-time. They are more like a desktop application, and more responsive. Routing allows deep-linking and the ability to return to a specific state, based on URI.</small>
+						<li>No (or very little) server-generated code</li>
+						<small>The browser requests static html, css and js. All display logic is in js, and all data is delivered as needed via AJAX calls. Very efficient delivery - can even use CDN for everything but API. This can also increase security by not having code executed on the server.</small>
+						<li>AJAX/REST</li>
+						<small>The usual approach is to consume one or more REST APIs for data. REST is a lightweight and efficient web service methodology. Angular can also consume other web service types, such as SOAP.</small>
+					</ul>
+				</section>			
+			
+				<section>
+					<h2>Setting Up Your Environment</h2>
+					<ul>
+						<li>Writing Code</li>
+						<small>You can use your favorite editor or IDE to build an Angular application - WebStorm, Sublime, VS, etc., and use supporting tools to serve, debug, run and test.</small>
+						<li>NodeJS/NPM</li>
+						<small>NodeJS is a javascript runtime environment that can act as a back-end for applications. It can run a web server to use in development. Node Package Manager, which is like NuGet for NodeJS, can download libraries such as Express and Bower. NPM can also run tasks like starting your dev server and running tests.</small>
+						<li>Bower</li>
+						<small>Bower is like NPM for the client, managing dependencies for your web application, such as Angular, jQuery, Underscore, etc.</small>
+						<li>Test runners</li>
+						<small>Karma is the official Angular js test runner. Chutzpah (available via NuGet) integrates very well with Visual Studio.</small>
+						<li>Plugins</li>
+						<small>Many plugins for code completion, snippets, etc. exist for Resharper and different editors.</small>
+						<li>NuGet</li>
+						<small>Can add Angular core, NodeJS, more from NuGet.</small>
+						<li>NTVS</li>	
+						<small>Node Tools for Visual Studio provides NodeJS conveniences for Visual Studio users, such as project templates and the ability to quickly F5/debug your NodeJS server.</small>						
+					</ul>
+				</section>	
+			
+				<section>
+					<h2>Angular Application Structure</h2>
+					<ul>
+						<li>Modules</li>
+						<small>A module is a collection of related code that can be added as a dependency to another module. A module is not directly related to a file, and are often comprised of multiple files. Modules are kind of like assemblies.</small>
+						<li>Dependency Injection</li>
+						<small>Within modules, there are controllers, services, directives, filters and other "entities" that perform a specific duty. All of these entities are registered with the Angular application, and may declare dependencies on each other. When a dependency is declared, Angular will inject that dependency at runtime.</small>
+						<li>Angular Application</li>
+						<small>The Angular application is the highest level module, and composes constituent modules. There may be more than one in your web application, though it is not common.</small>
+					</ul>
+				</section>					
+				
+				<section>
+					<h2>Angular Application Structure</h2>
+					<h3>DEMO</h3>
+				</section>				
+			
+				<section>
+					<h2>Controllers</h2>
+					<ul>
+						<li>Controllers Connect Things</li>
+						<small>The controller is the "glue" that connects the various concerns. Common controller tasks are initializing state, retrieving data/binding to the model, and calling out to Angular services in our app. The controller should do no DOM manipulation and contain no logic. As a result, it should remain small.</small>
+						<li>Scope</li>
+						<small>Controllers can cover an entire application or one div, depending upon where it is declared. Controllers connect functions and data to the scope, to be used from the UI.</small>
+						<li>Hierarchical</li>
+						<small> Controllers can be nested. For instance, you can have a SecurityController that manages authentication for your entire application, and more conventional controllers within it.</small>
+						<li>Initialization</li>
+						<small> Controllers can be declared in markup as an element attribute, or in route configuration.</small>
+					</ul>
+				</section>					
+				
+				<section>
+					<h2>Controllers</h2>
+					<h3>DEMO</h3>
+				</section>					
+				
+				<section>
+					<h2>Databinding and Evaluation</h2>
+					<ul>
+						<li>How we access objects on the scope</li>
+						<li>ng-model</li>
+						<code><small>&lt;input ng-model="claim.category"&gt;</small></code>
+						<li>Double-curlies</li>
+						<code><small>{{claim.category}}</small></code>
+						<li>Normal js object properties</li>
+						<code><small>{{claims.length}}</small></code>
+						<li>Call functions</li>
+						<code><small>&lt;input type="submit" ng-click="login(user)"&gt;</small></code>
+					</ul>
+				</section>					
+				
+				<section>
+					<h2>Databinding</h2>
+					<h3>DEMO</h3>
+				</section>	
+				
+				<section>
+					<h2>Routing</h2>
+					<ul>
+                        <li>RESTFUL URLs for single page apps (AKA deep linking)</li>
+						<li>Routing Example</li>
+                        <code><pre>
+angular.module('myApp')
+            .config(function($routeProvider){
+                $routeProvider
+                    .when('/view1',{
+                        controller:'Controller1',
+                        templateUrl:'partials/view1.html'})
+                    .when('/view2',{
+                        controller: 'Controller2',
+                        templateUrl: 'partials/view2.html'
+                    });
+});
+</pre>
+                        </code>
+                        <li>URL: </li>
+                        <code>
+<pre>
+    http://local.webdemo/#/view1
+    http://local.webdemo/#/view2
+</pre>
+                        </code>
+                    </ul>
+				</section>					
+                
+				<section>
+					<h1>Routing</h1>
+					<h3>DEMO</h3>
+				</section>	
+
+				<section>
+					<h1>Services</h1>
+					<ul>
+						<li>Encapsulate business logic</li>
+						<li>Enable separation of concerns</li>
+                        <li>Example built-in services - $timeout, $http, or $resource</li>
+                        <li>Custom services - </li>
+                        <ul>
+                            <li>Enterprise data services access, e.g. wrappers around $http/$resource API calls</li>
+                            <li>Custom services - any custom UI handling, e.g. $localStorage to encapsulate localStorage</li>
+                        </ul>
+						<li>Each Service is singleton (can also hold shared state)</li>
+                        <li>Enable testable software development (with the help of built-in DI) </li>
+					</ul>
+				</section>					
+				
+				<section>
+					<h1>Services</h1>
+					<h3>DEMO</h3>
+				</section>	
+				
+				<section>
+					<h1>Directives</h1>
+					<ul>
+						<li>Enable custom components development</li>
+						<li>Primary mechanism to avoid direct DOM interaction</li>
+                        <li>Enable reuse of legacy javascript frameworks/code (e.g. jQuery UI)</li>
+                        <li>Enable Headless Unit Testing</li>
+						<li>Markup driven</li>
+                        <code>
+<pre>
+    angular.module("wex1View").directive("wexIcon", [
+        function () {
+            return { restrict: 'E', replace: true,
+                scope: {
+                    "icon": "="
+                }, templateUrl: 'app/directive-templates/icon.html'
+            };
+        }
+    ]);
+</pre>
+                        </code>
+                        <code>
+                            <small>
+    Usage
+    &lt;wex-icon icon="'map-marker'">&lt;/wex-icon&gt;
+                            </small>
+                        </code>
+					</ul>
+				</section>					
+				
+				<section>
+					<h1>Directives</h1>
+					<h3>DEMO</h3>
+				</section>	
+								
+				<section>
+					<h2>Filters</h2>
+					<ul>
+						<li>Two main types - formatting and collection filtering</li>
+						<li>A bunch of built-ins for dates, currency, etc., and you can make your own</li>
+						<li>Piping through filters for formatting</li>					
+						<code><small>{{claims.amount | currency}}</small></code>
+						<li>Piping through filters for formatting - great for images too</li>		
+						<code><small>{{claim.status | statusicon}}</small></code>				
+						<li>Piping through filters for collection filtering</li>					
+						<code><small>{{claims | filter:criteria}}</small></code>
+						<li>Can sort</li>					
+						<code><small>{{claims | orderBy:'category'}}</small></code>
+						<li>Can chain filters</li>					
+						<code><small>{{claims | orderBy:'category' | filter:criteria}}</small></code>
+					</ul>
+				</section>					
+				
+				<section>
+					<h2>Filters</h2>
+					<h3>DEMO</h3>
+				</section>	
+				
+				<section>
+					<h2>Response Interceptors</h2>
+					<ul>
+						<li>Manipulate http requests and responses</li>
+						<li>Can take actions at four events - Request, RequestError, Response, ResponseError</li>
+						<li>Useful for security - angular-http-auth</li>
+						<li>Could also be useful for logging AJAX errors, etc.</li>
+					</ul>
+				</section>					
+				
+				<section>
+					<h2>Response Interceptors</h2>
+					<h3>DEMO</h3>
+				</section>	
+				
+				<section>
+					<h1>Testing</h1>
+					<ul>
+						<li>Framework built for fast unit tests executions</li>
+						<li>Supports BDD test framework (Jasmine, http://jasmine.github.io/), as well as other testing frameworks</li>
+					    <li>Integration with protractor browser test automation</li>
+					</ul>
+				</section>					
+				
+				<section>
+					<h1>Testing</h1>
+					<h3>DEMO</h3>
+				</section>	
+				
+				<section>
+					<h2>Angular and 1Cloud</h2>
+					<ul>
+						<li>Pilot</li>
+						<small>We focused on three areas for the pilot. One is a transaction "wizard", and the other two display filtered lists of claims and payments.</small>
+						<li>Wizard</li>
+						<small>The wizard is the most "Angular" of the three, using major Angular features and philosophies. Mostly static HTML, very responsive, consumes REST, but does not use routing. </small>
+						<li>Filtered Lists</li>
+						<small>The filtered lists leverage two major Angular abilities - the ability to filter collections on the client, and the </small>
+						<li>Controls</li>
+						<small>Some refreshed Consumer Portal controls were packaged as directives. They share the same markup and javascript.</small>
+					</ul>
+				</section>					
+
+				<section>
+					<h2>Other Interesting Subjects</h2>
+					<ul>
+						<li>Promises</li>
+						<li>Best practices</li>
+						<li>Debugging</li>
+						<small>Dev Tools<br/>Batarang</small>
+						<li>Using Angular $httpBackend during development</li>
+						<small>No need for live services</small>
+						<li>3rd-party modules</li>
+						<small>angular-ui<br/>check ngmodules.org</small>
+						<li>Books, blogs, videos, resources</li>
+						<small><a href="http://egghead.io">egghead.io</a><br/>
+						<a href="http://onehungrymind.com">onehungrymind.com</a><br/>
+						<a href="https://github.com/jmcunningham/AngularJS-Learning">Long list of resources, including links to smaller, curated sources</a></small>
+						<li>Presentation slides and code</li>
+						<small>$/OnDemand/developer/devforum/Angular1View</small>
+					</ul>
+				</section>	
+				
+				<section>
+					<h1>Thank You!</h1>
+				</section>	
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

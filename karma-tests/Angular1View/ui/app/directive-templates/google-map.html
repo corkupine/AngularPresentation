@@ -1,0 +1,8 @@
+<div class="google-address" ng-init="showGoogleMap=false" >
+    <a href="javascript:void(0)" ng-click="showGoogleMap=!showGoogleMap;$event.stopPropagation() ">
+      <wex-icon icon="'map-marker'"></wex-icon>
+    </a>
+    <a  ng-if="showGoogleMap" href="http://www.google.com/maps?q={{address}}&t=h" target="_blank">
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{address}}&zoom=10&size=500x240&maptype=hybrid&markers=color:red%7C{{address}}" style="max-width:100%"  alt="Google Map, click to see detailed map" />
+    </a>
+</div>

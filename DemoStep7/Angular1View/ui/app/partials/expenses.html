@@ -1,0 +1,10 @@
+﻿<div class="toolbar">
+    <label for="searchText">Search:</label>
+    <input name="searchText" type="text" ng-model="searchText" value="" />
+</div>
+<div class="expenses" ng-repeat="expense in model.expenses | filter:searchText">
+    <div class="expense">
+        <div class="category">{{expense.category}}</div>
+        <div><a href="#/expenses/{{expense.id}}">{{expense.description}}</a></div>
+    </div>
+</div>

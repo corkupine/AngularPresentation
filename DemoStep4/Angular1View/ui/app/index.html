@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>1View Portal</title>
+        <link href="../components/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/app.css">
+        <script src="../components/lib/jquery/dist/jquery.js"></script>
+        <script src="../components/lib/angular/angular.js"></script>
+        <script src="../components/lib/angular-route/angular-route.js"></script>
+        <script src="../components/lib/angular-resource/angular-resource.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="wex1View">
+        <h1> 1View Dashboard</h1>
+        <div class="dashboard" ng-controller="ExpensesSearchCtrl">
+            <div ng-view></div>
+        </div>
+    </body>
+    <script type="text/ng-template" id="partials/expenses.html">
+        <div class="expenses" ng-repeat="expense in model.expenses">
+            <div class="expense">
+                <div class="category">{{expense.category}}</div>
+                <div><a href="#/expenses/{{expense.id}}">{{expense.description}}</a></div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="partials/expense-detail.html">
+        <div class="expenses">
+            <div class="expense">
+                <div>{{model.expense.category}}</div>
+                <div>{{model.expense.date}}</div>
+                <div>{{model.expense.description}}</div>
+                <div class="amount">{{model.expense.amount}}</div>
+            </div>
+            <a href="#/expenses">{{model.backtext}}</a>
+        </div>
+    </script>
+</html>

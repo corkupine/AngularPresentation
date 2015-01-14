@@ -1,0 +1,38 @@
+﻿body {
+    font-size: 16px;
+    color: #777;
+}
+
+.dashboard {
+    margin: 1em;
+
+}
+
+.dashboard .toolbar{
+    float: right;
+
+}
+
+.dashboard .expenses {
+    
+}
+.dashboard .expenses .expense {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.dashboard .expenses .expense > div{
+    display: inline-block;
+    position: relative;
+    min-width: 8em;
+}
+.dashboard .expenses .expense .amount{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    min-width: 10em;
+    text-align: right;
+}

@@ -1,0 +1,2 @@
+C:\Projects\sandbox\developer\devforum\Angular1View\express-base\Angular1View\obj\Debug\Angular1View.njsprojResolveAssemblyReference.cache
+C:\Projects\sandbox\developer\devforum\Angular1View\express-base\Angular1View\bin\Microsoft.NodejsTools.WebRole.dll
